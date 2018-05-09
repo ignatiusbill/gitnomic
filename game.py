@@ -27,9 +27,9 @@ def is_approved(yay, nay, total):
     return True
   else:
     #simple majority, and every player voted besides the proposer.
-    if yay <= nay and yay + nay == total -1:
-      return False
-    return True
+    if yay >= nay and yay + nay == total - 1:
+      return True
+    return False
   
 def pick_next_player(players, current=None):
   #201. Players shall alternate in alphabetical order by [username].
@@ -82,7 +82,7 @@ def resolve_round():
 	#Only one pull request per player per round.
     break;
   #get the next player and advance the round
-  next_player = pick_next_player(players)
+  next_player = pick_next_player(players, current_player)
   repository.advance_round(next_player)
   
 def init_game():
